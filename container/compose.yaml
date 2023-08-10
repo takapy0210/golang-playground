@@ -1,0 +1,11 @@
+version: "3.9"
+
+services:
+  go-app:
+    container_name: go-app
+    image: go-app:latest
+    build:
+      context: .
+    volumes:
+      - ./app:/opt/program/app:cached
+    command: go run app/main.go

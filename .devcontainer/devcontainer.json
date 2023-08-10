@@ -1,0 +1,44 @@
+// For format details, see https://aka.ms/devcontainer.json. For config options, see the README at:
+// https://github.com/microsoft/vscode-dev-containers/tree/v0.241.1/containers/docker-existing-docker-compose
+// If you want to run as a non-root user in the container, see .devcontainer/docker-compose.yml.
+{
+	"name": "Go app",
+	"dockerFile": "../container/Dockerfile",
+	"mounts": [
+		"source=${localWorkspaceFolder}/.devcontainer/setup.sh,target=/root/setup.sh,type=bind,consistency=cached",
+		"source=${localWorkspaceFolder}/.devcontainer/.zshrc_devcontainer,target=/root/.zshrc,type=bind,consistency=cached",
+		"source=${localWorkspaceFolder},target=/opt/program,type=bind,consistency=cached",
+		"source=${localEnv:HOME}/.aws,target=/root/.aws,type=bind,consistency=cached",
+		"source=${localEnv:HOME}/.gcp,target=/root/.gcp,type=bind,consistency=cached"
+	],
+	"workspaceFolder": "/opt/program",
+	"customizations": {
+		"vscode": {
+			"settings": {
+				"terminal.integrated.profiles.linux": {
+					"bash": {
+						"path": "/usr/bin/zsh"
+					}
+				}
+			},
+			"extensions": [
+				"donjayamanne.githistory",
+				"GitHub.vscode-pull-request-github",
+				"ms-vscode.go",
+				"golang.go",
+				"mechatroner.rainbow-csv",
+				"DavidAnson.vscode-markdownlint",
+				"withfig.fig",
+				"genieai.chatgpt-vscode",
+				"Gruntfuggly.todo-tree",
+				"wayou.vscode-todo-highlight",
+				"PKief.material-icon-theme",
+				"GitHub.copilot",
+				"ms-vscode.makefile-tools",
+				"usernamehw.errorlens",
+				"ms-azuretools.vscode-docker"
+			]
+		}
+	},
+	"postCreateCommand": "sh /root/setup.sh"
+}
